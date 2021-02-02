@@ -13,11 +13,23 @@
         </div>
 
         <ul class="sidebar-menu" data-widget="tree">
-            @if(auth()->user()->hasPermission('users_read'))
+            
             <li><a href="{{url('dashboard/index')}}"><i class="fa fa-th"></i><span>@lang('site.dashboard')</span></a></li>
+            
+            @if(auth()->user()->hasPermission('categories_read'))
+            <li><a href="{{url('dashboard/categories/index')}}"><i class="fa fa-th"></i><span>@lang('site.categories')</span></a></li>
             @endif
-            <li><a href="{{url('dashboard/users/index')}}"><i class="fa fa-th"></i><span>@lang('site.users')</span></a></li>
 
+            @if(auth()->user()->hasPermission('products_read'))
+            <li><a href="{{url('dashboard/products/index')}}"><i class="fa fa-th"></i><span>@lang('site.products')</span></a></li>
+            @endif
+
+
+            @if(auth()->user()->hasPermission('users_read'))
+            <li><a href="{{url('dashboard/users/index')}}"><i class="fa fa-th"></i><span>@lang('site.users')</span></a></li>
+            @endif
+
+            
             {{-- @if (auth()->user()->hasPermission('read_categories'))
                 <li><a href="{{ route('dashboard.categories.index') }}"><i class="fa fa-th"></i><span>@lang('site.categories')</span></a></li>
             @endif
