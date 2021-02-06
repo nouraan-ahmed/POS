@@ -24,7 +24,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         //categories routes
 
-        Route::get('categories/index', [CategoryController::class, 'index'])->name('index');
+        Route::get('categories/index', [CategoryController::class, 'index'])->name('categories');
         Route::get('categories/create', [CategoryController::class, 'create']);
         Route::get('categories/{category}/edit', [CategoryController::class, 'edit'])->name('edit');
         Route::post('categories/store', [CategoryController::class, 'store']);
@@ -34,7 +34,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
         //products routes
 
-        Route::get('products/index', [ProductController::class, 'index'])->name('index');
+        Route::get('products/index', [ProductController::class, 'index'])->name('products');
         Route::get('products/create', [ProductController::class, 'create']);
         Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('edit');
         Route::post('products/store', [ProductController::class, 'store'])->name('store');

@@ -46,7 +46,7 @@ class CategoryController extends Controller
         ]);
         Category::create($request->all());
         session()->flash('success', __('site.added_successfully'));
-        return redirect()->route('dashboard.index');
+        return redirect()->route('dashboard.categories');
     }
     /**
      * Show the form for editing the specified resource.

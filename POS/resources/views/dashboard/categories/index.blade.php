@@ -113,7 +113,7 @@
                 <div class="box-header with-border">
 
                     <h3 class="box-title" style="margin-bottom: 15px">@lang('site.categories')<small>{{$categories->total()}}</small> </h3>
-                    <form action="{{route('dashboard.index')}}" method="get">
+                    <form action="{{route('dashboard.categories')}}" method="get">
                         <div class="row">
                         <div class="col-md-4">
                         <input type="text" name="search" class="form-control" value="{{request()->search}}" placeholder="@lang('site.search')">
@@ -137,7 +137,8 @@
         <tr>
             <th>#</th>
             <th>@lang('site.name')</th>
-            
+            <th>@lang('site.products_count')</th>
+            <th>@lang('site.related_products')</th>
             <th>@lang('site.action')</th>
         </tr>
         </thead>
@@ -147,6 +148,8 @@
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $category->name }}</td>
+            <td>{{ $category->products->count()}}</td>
+            <td><a href="{{route('dashboard.products',['category_id'=>$category->id])}}" class="btn btn-primary btn-sm">@lang('site.related_products')</a></td>
             
             <td>
             @if(auth()->user()->hasPermission('categories_update'))

@@ -22,7 +22,7 @@
 
                     <h3 class="box-title" style="margin-bottom: 15px">@lang('site.products') <small>{{ $products->total() }}</small></h3>
 
-                    <form action="{{ route('dashboard.products.index') }}" method="get">
+                    <form action="{{ route('dashboard.products.index) }}" method="get">
 
                         <div class="row">
 
@@ -113,10 +113,19 @@
                 <div class="box-header with-border">
 
                     <h3 class="box-title" style="margin-bottom: 15px">@lang('site.products')<small>{{$products->total()}}</small> </h3>
-                    <form action="{{route('dashboard.index')}}" method="get">
+                    <form action="{{route('dashboard.products')}}" method="get">
                         <div class="row">
                         <div class="col-md-4">
                         <input type="text" name="search" class="form-control" value="{{request()->search}}" placeholder="@lang('site.search')">
+                        </div>
+                        <div class="col-md-4">
+                        
+                        <select name="category_id" class="form-control">
+                        <option value="">@lang('site.all_categories')</option>
+                        @foreach($categories as $category)
+                        <option value="{{$category->id}}" {{ request()->category_id == $category->id ? 'selected' : '' }}>{{$category->name}}</option>
+                        @endforeach
+                        </select>
                         </div>
                         <div class="col-md-4">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i>@lang('site.search')</button>
@@ -138,9 +147,11 @@
             <th>#</th>
             <th>@lang('site.name')</th>
             <th>@lang('site.description')</th>
+            <th>@lang('site.category')</th>
             <th>@lang('site.image')</th>
             <th>@lang('site.purchase_price')</th>
             <th>@lang('site.sale_price')</th>
+            <th>@lang('site.profit_percent')%</th>
             <th>@lang('site.stock')</th>
             <th>@lang('site.action')</th>
         </tr>
@@ -152,9 +163,11 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ $product->name }}</td>
             <td>{!! $product->description !!}</td>
+            <td>{!! $product->category->name !!}</td>
             <td><img src="{{$product->image_path}}" style="height:50px" class="img-thumbnail" alt=""></td>
             <td>{{ $product->purchase_price }}</td>
             <td>{{ $product->sale_price }}</td>
+            <td>{{$product->profit_percent}}%</td>
             <td>{{ $product->stock }}</td>
             
             <td>
